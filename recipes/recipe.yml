@@ -21,15 +21,9 @@ modules:
         destination: / # copies files/system/* (* means everything inside it) into your image's root folder /
 
   - type: rpm-ostree
-    repos:
-      - https://negativo17.org/repos/fedora-multimedia.repo
     install:
       - ghostty
-
-  - type: akmods
-    base: main
-    install:
-      - evdi
+      - fedora-41-displaylink-1.14.8-1.github_evdi.x86_64.rpm
 
   - type: signing # this sets up the proper policy & signing files for signed images to work fully
 
