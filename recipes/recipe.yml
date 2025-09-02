@@ -24,6 +24,7 @@ modules:
     remove:
       - firefox
       - firefox-langpacks
+      - kitty
 
   - type: default-flatpaks
     configurations:
