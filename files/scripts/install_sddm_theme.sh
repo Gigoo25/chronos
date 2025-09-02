@@ -45,4 +45,10 @@ sudo mv -v "$TMP_DIR/$THEME_NAME" "$SDDM_THEMES_DIR/"
 # Cleanup
 rm -rf "$TMP_DIR"
 
+# Set FontSize
+sudo sed -i 's/FontSize=.*/FontSize=12/' "$TARGET_DIR/theme.conf"
+
+# Disable CustomBackground
+sed -i 's/CustomBackground=.*/CustomBackground=false/' "$TARGET_DIR/theme.conf"
+
 echo "[✓] Installed SDDM theme: $TARGET_DIR"
