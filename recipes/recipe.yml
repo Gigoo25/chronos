@@ -48,6 +48,7 @@ modules:
       - install_catppucin_theme.sh
       - install_catppucin_cursor.sh
       # - install_catppucin_icons.sh
+      - install_sddm_theme.sh
 
   - type: gschema-overrides
     include:
