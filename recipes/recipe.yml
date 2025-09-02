@@ -21,6 +21,7 @@ modules:
       - starship
       - nano
       - vi
+      - tmux
     remove:
       - firefox
       - firefox-langpacks
