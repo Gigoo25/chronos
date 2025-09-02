@@ -8,7 +8,7 @@ TMP_DIR="$(mktemp -d)"
 # User-configurable variables
 # ===============================
 FLAVOR="mocha"   # latte | frappe | macchiato | mocha
-COLOR="lavander" # blue | flamingo | green | lavender | maroon | mauve | peach | pink | red | rosewater | sapphire | sky | teal | yellow
+COLOR="lavender" # blue | flamingo | green | lavender | maroon | mauve | peach | pink | red | rosewater | sapphire | sky | teal | yellow
 
 # Construct zip filename
 ZIP_FILE="catppuccin-${FLAVOR}-${COLOR}-cursors.zip"
