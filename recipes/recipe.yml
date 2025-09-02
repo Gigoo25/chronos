@@ -49,6 +49,10 @@ modules:
       - install_catppucin_cursor.sh
       # - install_catppucin_icons.sh
 
+  - type: gschema-overrides
+    include:
+      - zz1-wayblue-theming.gschema.override
+
   - type: brew
     nofile-limits: true
     brew-analytics: false
