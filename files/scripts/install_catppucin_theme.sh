@@ -14,7 +14,7 @@ COLOR="lavender" # blue | flamingo | green | lavender | maroon | mauve | peach |
 THEME_FILE="catppuccin-${FLAVOR}-${COLOR}-standard+default.zip"
 
 # Clean folder name for GNOME Tweaks
-CLEAN_THEME_NAME="Catppuccin-$(tr '[:lower:]' '[:upper:]' <<< ${FLAVOR:0:1})${FLAVOR:1}-$(tr '[:lower:]' '[:upper:]' <<< ${COLOR:0:1})${COLOR:1})"
+CLEAN_THEME_NAME="Catppuccin-$(tr '[:lower:]' '[:upper:]' <<<${FLAVOR:0:1})${FLAVOR:1}-$(tr '[:lower:]' '[:upper:]' <<<${COLOR:0:1})${COLOR:1}"
 
 echo "[+] Installing Catppuccin GTK theme: $FLAVOR / $COLOR"
 sudo mkdir -p "$THEMES_DIR"
@@ -26,8 +26,8 @@ ASSETS_JSON="$(curl -s "https://api.github.com/repos/catppuccin/gtk/releases/lat
 ASSET_URL=$(echo "$ASSETS_JSON" | jq -r --arg NAME "$THEME_FILE" '.assets[] | select(.name == $NAME) | .browser_download_url')
 
 if [ -z "$ASSET_URL" ] || [ "$ASSET_URL" == "null" ]; then
-    echo "[!] Theme $THEME_FILE not found in latest release!"
-    exit 1
+  echo "[!] Theme $THEME_FILE not found in latest release!"
+  exit 1
 fi
 
 # Download
@@ -45,7 +45,7 @@ sudo rm -rf "$TARGET_DIR"
 sudo mkdir -p "$TARGET_DIR"
 
 for sub in gtk-3.0 gtk-4.0; do
-    [ -d "$TMP_DIR/${THEME_FILE%.zip}/$sub" ] && sudo cp -r "$TMP_DIR/${THEME_FILE%.zip}/$sub" "$TARGET_DIR/"
+  [ -d "$TMP_DIR/${THEME_FILE%.zip}/$sub" ] && sudo cp -r "$TMP_DIR/${THEME_FILE%.zip}/$sub" "$TARGET_DIR/"
 done
 
 # Cleanup
@@ -53,4 +53,3 @@ rm -rf "$TMP_DIR"
 
 echo "[✓] Installed $TARGET_DIR (gtk-3.0 + gtk-4.0)"
 echo "Open GNOME Tweaks → Appearance → Applications to apply."
-
