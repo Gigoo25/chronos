@@ -1,0 +1,5 @@
+[org.gnome.desktop.interface]
+gtk-theme='Catppuccin-Mocha-Lavander' 
+color-scheme='prefer-dark'
+icon-theme='Papirus-Dark'
+cursor-theme='Catppuccin-Mocha-Lavander'
