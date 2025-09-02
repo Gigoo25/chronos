@@ -7,8 +7,8 @@ TMP_DIR="$(mktemp -d)"
 # ===============================
 # User-configurable variables
 # ===============================
-FLAVOR="mocha"    # latte | frappe | macchiato | mocha
-COLOR="lavender"  # blue | flamingo | green | lavender | maroon | mauve | peach | pink | red | rosewater | sapphire | sky | teal | yellow
+FLAVOR="mocha"   # latte | frappe | macchiato | mocha
+COLOR="lavender" # blue | flamingo | green | lavender | maroon | mauve | peach | pink | red | rosewater | sapphire | sky | teal | yellow
 
 # Construct folder color name
 FOLDER_COLOR="cat-${FLAVOR}-${COLOR}"
@@ -25,14 +25,10 @@ TARGET_FOLDERS=("Papirus" "Papirus-Dark")
 
 # Copy src content to both Papirus folders
 for TARGET in "${TARGET_FOLDERS[@]}"; do
-    DEST="$ICONS_DIR/$TARGET"
-    echo "[+] Copying folder icons to $DEST..."
-    sudo mkdir -p "$DEST"
-    sudo cp -r src/* "$DEST/"
-
-    # Apply the selected folder color
-    echo "[+] Setting folder color: $FOLDER_COLOR for $TARGET"
-    sudo papirus-folders -C "$FOLDER_COLOR" --theme "$TARGET"
+  DEST="$ICONS_DIR/$TARGET"
+  echo "[+] Copying folder icons to $DEST..."
+  sudo mkdir -p "$DEST"
+  sudo cp -r src/* "$DEST/"
 done
 
 # Cleanup
@@ -40,4 +36,3 @@ rm -rf "$TMP_DIR"
 
 echo "[✓] Installed Catppuccin Papirus folders with color $FOLDER_COLOR to both Papirus and Papirus-Dark."
 echo "You can change colors later with: sudo papirus-folders -C <color> --theme <theme>"
-
