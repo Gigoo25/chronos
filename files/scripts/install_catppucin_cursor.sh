@@ -14,7 +14,7 @@ COLOR="lavender" # blue | flamingo | green | lavender | maroon | mauve | peach |
 ZIP_FILE="catppuccin-${FLAVOR}-${COLOR}-cursors.zip"
 
 # Clean folder name
-CLEAN_NAME="Catppuccin-$(tr '[:lower:]' '[:upper:]' <<< ${FLAVOR:0:1})${FLAVOR:1}-$(tr '[:lower:]' '[:upper:]' <<< ${COLOR:0:1})${COLOR:1})"
+CLEAN_NAME="Catppuccin-$(tr '[:lower:]' '[:upper:]' <<<${FLAVOR:0:1})${FLAVOR:1}-$(tr '[:lower:]' '[:upper:]' <<<${COLOR:0:1})${COLOR:1}"
 
 echo "[+] Installing Catppuccin cursors: $FLAVOR / $COLOR"
 sudo mkdir -p "$ICONS_DIR"
@@ -26,8 +26,8 @@ ASSETS_JSON="$(curl -s "https://api.github.com/repos/catppuccin/cursors/releases
 ASSET_URL=$(echo "$ASSETS_JSON" | jq -r --arg NAME "$ZIP_FILE" '.assets[] | select(.name == $NAME) | .browser_download_url')
 
 if [ -z "$ASSET_URL" ] || [ "$ASSET_URL" == "null" ]; then
-    echo "[!] Cursor $ZIP_FILE not found in latest release!"
-    exit 1
+  echo "[!] Cursor $ZIP_FILE not found in latest release!"
+  exit 1
 fi
 
 # Download
@@ -47,4 +47,3 @@ rm -rf "$TMP_DIR"
 
 echo "[✓] Installed cursors to $TARGET_DIR"
 echo "You can set them with GNOME Tweaks → Appearance → Cursor."
-
