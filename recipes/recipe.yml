@@ -43,13 +43,6 @@ modules:
         remove:
           - io.github.input_leap.input-leap
 
-  - type: script
-    scripts:
-      - install_catppucin_theme.sh
-      - install_catppucin_cursor.sh
-      # - install_catppucin_icons.sh
-      - install_sddm_theme.sh
-
   - type: gschema-overrides
     include:
       - zz1-wayblue-theming.gschema.override
