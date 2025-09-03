@@ -24,10 +24,12 @@ modules:
       - vi
       - tmux
     remove:
+      - thunar
+      - thunar-archive-plugin
+      - thunar-volman
       - firefox
       - firefox-langpacks
       - kitty
-      - thunar
 
   - type: default-flatpaks
     configurations:
