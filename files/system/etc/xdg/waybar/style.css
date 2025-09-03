@@ -3,13 +3,14 @@
     font-size: 13px;
 }
 
-@define-color inactive_module_color #a9a9a9;
+@define-color inactive_module_color #bac2de; /* subtext1 */
+@define-color accent_color #b4befe; /* lavender */
 
 window#waybar {
-    background-color: rgba(43, 48, 59, 0.8);
-    border-color: rgba(100, 114, 125, 0.5);
+    background-color: rgba(30, 30, 46, 0.9); /* base */
+    border-color: #11111b; /* crust */
     border-style: solid;
-    color: #ffffff;
+    color: #cdd6f4; /* text */
     transition-property: background-color;
     transition-duration: .5s;
 }
@@ -27,31 +28,24 @@ window#waybar.hidden {
 }
 
 button {
-    /* reset all builtin/theme styles */
     all: unset;
-    /* Restore some properties */
     min-height: 24px;
     min-width: 16px;
     padding: 0 10px;
     transition: all 200ms ease-out;
 }
 
-/* https://github.com/Alexays/Waybar/wiki/FAQ#the-workspace-buttons-have-a-strange-hover-effect */
 button:hover {
     background: inherit;
 }
 
-window#waybar:not(.bottom):not(.left):not(.right) button:hover{
-    box-shadow: inset 0 -2px;
+window#waybar:not(.bottom):not(.left):not(.right) button:hover {
+    box-shadow: inset 0 -2px @accent_color;
 }
 
 window#waybar.bottom button:hover {
-    box-shadow: inset 0 2px;
+    box-shadow: inset 0 2px @accent_color;
 }
-
-/*
- * Common module rules
- */
 
 .modules-left > widget > label,
 .modules-center > widget > label,
@@ -69,32 +63,26 @@ window#waybar.bottom button:hover {
     padding: 0;
 }
 
-/* If the leftmost module is a box, omit left margin and padding */
 .modules-left > widget:first-child > box {
     margin-left: 0;
     padding-left: 0;
 }
 
-/* If the rightmost module is a box, omit right margin and padding */
 .modules-right > widget:last-child > box {
     margin-right: 0;
     padding-right: 0;
 }
 
-
-/*
- * Draw module underlines
- */
 window#waybar:not(.bottom):not(.left):not(.right) .modules-left > widget > label,
 window#waybar:not(.bottom):not(.left):not(.right) .modules-center > widget > label,
 window#waybar:not(.bottom):not(.left):not(.right) .modules-right > widget > label {
-    box-shadow: inset 0 -2px;
+    box-shadow: inset 0 -2px transparent;
 }
 
 window#waybar.bottom .modules-left > widget > label,
 window#waybar.bottom .modules-center > widget > label,
 window#waybar.bottom .modules-right > widget > label {
-    box-shadow: inset 0 2px;
+    box-shadow: inset 0 2px transparent;
 }
 
 window#waybar #window {
@@ -103,39 +91,25 @@ window#waybar #window {
 
 #workspaces button {
     background-color: transparent;
-    color: #ffffff;
+    color: #cdd6f4;
 }
 
 #workspaces button:hover {
-    background: rgba(0, 0, 0, 0.2);
+    background: rgba(255, 255, 255, 0.05);
 }
 
 #workspaces button.focused {
-    background-color: #64727D;
-}
-
-window#waybar:not(.bottom):not(.left):not(.right) #workspaces button.focused {
-    box-shadow: inset 0 -2px;
-}
-
-window#waybar.bottom #workspaces button.focused {
-    box-shadow: inset 0 2px;
+    background-color: @accent_color;
+    color: #1e1e2e;
 }
 
 #workspaces button.urgent {
-    background-color: #eb4d4b;
+    background-color: #f38ba8; /* red */
 }
 
 #mode {
-    background-color: #64727D;
-}
-
-window#waybar:not(.bottom):not(.left):not(.right) #mode {
-    box-shadow: inset 0 -2px;
-}
-
-window#waybar.bottom #mode {
-    box-shadow: inset 0 2px;
+    background-color: @accent_color;
+    color: #1e1e2e;
 }
 
 #image {
@@ -144,23 +118,23 @@ window#waybar.bottom #mode {
 }
 
 #battery.charging, #battery.plugged {
-    color: #32cd32;
-}
-
-@keyframes blink {
-    to {
-        background-color: #ffffff;
-        color: #000000;
-    }
+    color: #a6e3a1; /* green */
 }
 
 #battery.critical:not(.charging) {
-    color: #f53c3c;
+    color: #f38ba8; /* red */
     animation-name: blink;
     animation-duration: 0.5s;
     animation-timing-function: linear;
     animation-iteration-count: infinite;
     animation-direction: alternate;
+}
+
+@keyframes blink {
+    to {
+        background-color: #cdd6f4;
+        color: #1e1e2e;
+    }
 }
 
 #network.disconnected,
@@ -179,7 +153,7 @@ window#waybar.bottom #mode {
 
 @keyframes needs-attention {
     to {
-        background-color: rgba(235, 77, 75, 0.5);
+        background-color: rgba(243, 139, 168, 0.5); /* red */
     }
 }
 
@@ -209,15 +183,17 @@ window#waybar.bottom #mode {
 
 #cpu.high,
 #temperature.critical {
-    color: #eb4d4b;
+    color: #f38ba8; /* red */
 }
 
 #language {
     min-width: 16px;
+    color: #94e2d5; /* teal */
 }
 
 #keyboard-state {
     min-width: 16px;
+    color: #94e2d5; /* teal */
 }
 
 #keyboard-state > label {
@@ -225,62 +201,52 @@ window#waybar.bottom #mode {
 }
 
 #keyboard-state > label.locked {
-    background: rgba(0, 0, 0, 0.2);
+    background: rgba(255, 255, 255, 0.05);
 }
 
 #scratchpad {
-    background: rgba(0, 0, 0, 0.2);
+    background: rgba(255, 255, 255, 0.05);
 }
 
 #scratchpad.empty {
-	background-color: transparent;
+    background-color: transparent;
 }
 
-
-/*
- * Module colors
- */
+/* Module colors */
 #cpu {
-    color: #2ecc71;
+    color: #a6e3a1; /* green */
 }
 
 #memory {
-    color: #ba55d3;
+    color: #f5c2e7; /* pink */
 }
 
 #disk {
-    color: #964B00;
+    color: #fab387; /* peach */
 }
 
 #backlight {
-    color: #90b1b1;
+    color: #f9e2af; /* yellow */
 }
 
 #network {
-    color: #00bfff;
+    color: #89b4fa; /* blue */
 }
 
 #pulseaudio,
 #wireplumber {
-    color: #f1c40f;
+    color: #f9e2af; /* yellow */
 }
 
 #temperature {
-    color: #f0932b;
+    color: #fab387; /* peach */
 }
 
 #mpd {
-    color: #66cc99;
+    color: #94e2d5; /* teal */
 }
 
 #mpd.paused {
-    color: #51a37a;
+    color: #89dceb;
 }
 
-#language {
-    color: #00b093;
-}
-
-#keyboard-state {
-    color: #97e1ad;
-}
