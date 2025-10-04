@@ -1,0 +1,18 @@
+name: Cleanup GHCR Images
+
+on:
+  # every sunday at 00:00
+  schedule:
+    - cron: "0 0 * * SUN"
+  # or manually
+  workflow_dispatch:
+
+jobs:
+  - name: ghcr.io cleanup action
+    runs-on: ubuntu-latest
+    steps:
+      - uses: dataaxiom/ghcr-cleanup-action@v1
+        with:
+          delete-untagged: true
+    permissions:
+      packages: write
