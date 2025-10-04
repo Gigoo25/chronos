@@ -4,51 +4,70 @@
 name: chronos
 description: This is my personal OS image.
 
-base-image: ghcr.io/wayblueorg/hyprland-nvidia
-image-version: latest
+base-image: quay.io/fedora-ostree-desktops/base-atomic
+
+image-version: 42
 
 modules:
-  - type: files
-    files:
-      - source: system
-        destination: /
+    - from-file: common/sddm-modules.yml
+    - from-file: common/common-modules.yml
+    - from-file: common/nvidia-modules.yml
+    - from-file: common/final-modules.yml
 
-  - type: rpm-ostree
-    repos:
-      - https://copr.fedorainfracloud.org/coprs/atim/starship/repo/fedora-%OS_VERSION%/atim-starship-fedora-%OS_VERSION%.repo
-    install:
-      - ghostty
-      - starship
-      - nano
-      - vi
-      - tmux
-    remove:
-      - firefox
-      - firefox-langpacks
-      - kitty
+    - type: rpm-ostree
+      repos:
+          - https://copr.fedorainfracloud.org/coprs/atim/starship/repo/fedora-%OS_VERSION%/atim-starship-fedora-%OS_VERSION%.repo
+      install:
+          - niri
+          - waybar
+          - xdg-desktop-portal-wlr
+          - xdg-desktop-portal-gtk
+          - fuzzel
+          - swaylock
+          - swayidle
+          - swaybg
+          # Other Apps
+          - ghostty
+          - starship
+          - nano
+          - vi
+          - tmux
+      remove:
+          # Other Apps
+          - firefox
+          - firefox-langpacks
 
-  - type: default-flatpaks
-    configurations:
-      - notify: true
-        scope: user
-        install:
-          - io.github.kolunmi.Bazaar
-          - app.zen_browser.zen
-          - org.remmina.Remmina
-          - dev.zed.Zed
-          - com.getpostman.Postman
-          - io.github.dvlv.boxbuddyrs
-          - com.usebottles.bottles
-          - it.mijorus.gearlever
-        remove:
-          - io.github.input_leap.input-leap
+    - type: files
+      files:
+          - source: system
+            destination: /
 
-  - type: gschema-overrides
-    include:
-      - chronos-theming.gschema.override
+    - type: script
+      scripts:
+          - setniriwaybarmodules.sh
 
-  - type: brew
-    nofile-limits: true
-    brew-analytics: false
+    - type: default-flatpaks
+      configurations:
+          - notify: true
+            scope: user
+            install:
+                - io.github.kolunmi.Bazaar
+                - app.zen_browser.zen
+                - org.remmina.Remmina
+                - dev.zed.Zed
+                - com.getpostman.Postman
+                - io.github.dvlv.boxbuddyrs
+                - com.usebottles.bottles
+                - it.mijorus.gearlever
+            remove:
+                - io.github.input_leap.input-leap
 
-  - type: signing
+    - type: gschema-overrides
+      include:
+          - chronos-theming.gschema.override
+
+    - type: brew
+      nofile-limits: true
+      brew-analytics: false
+
+    - type: signing
