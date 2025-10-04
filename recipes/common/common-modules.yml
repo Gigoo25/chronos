@@ -155,7 +155,7 @@ modules:
 
     - type: gschema-overrides
       include:
-          - zz1-wayblue-theming.gschema.override
+          - chronos-theming.gschema.override
 
     - type: script
       scripts:

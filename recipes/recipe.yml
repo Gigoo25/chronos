@@ -62,10 +62,6 @@ modules:
             remove:
                 - io.github.input_leap.input-leap
 
-    - type: gschema-overrides
-      include:
-          - chronos-theming.gschema.override
-
     - type: brew
       nofile-limits: true
       brew-analytics: false
