@@ -1,0 +1,15 @@
+modules:
+    - type: rpm-ostree
+      repos:
+          - https://copr.fedorainfracloud.org/coprs/fnux/ly/repo/fedora-%OS_VERSION%/fnux-ly-fedora-%OS_VERSION%.repo
+      install:
+          - ly
+          - xorg-x11-server
+          - xorg-x11-xauth
+
+    - type: systemd
+      system:
+          enabled:
+              - ly.service
+          disabled:
+              - getty@tty2.service
