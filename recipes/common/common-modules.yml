@@ -1,18 +1,13 @@
 modules:
     - type: containerfile
       snippets:
-          - COPY --from=ghcr.io/ublue-os/akmods:main-42 /rpms /tmp/rpms
-          - COPY --from=ghcr.io/ublue-os/akmods:main-42 /kernel-rpms /tmp/rpms/kernel
+          - COPY --from=ghcr.io/ublue-os/akmods:main-%OS_VERSION% /rpms /tmp/rpms
+          - COPY --from=ghcr.io/ublue-os/akmods:main-%OS_VERSION% /kernel-rpms /tmp/rpms/kernel
           - RUN find /tmp/rpms
           - RUN rpm -q ublue-os-akmods-addons || rpm-ostree install /tmp/rpms/ublue-os/ublue-os-akmods-addons*.rpm
     - type: script
       scripts:
           - installsignedkernel.sh
-
-    - type: files
-      files:
-          - source: system/custom_repos/etc
-            destination: /etc
 
     - type: rpm-ostree
       install:
