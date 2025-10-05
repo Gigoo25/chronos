@@ -1,0 +1,16 @@
+modules:
+    - type: default-flatpaks
+      configurations:
+          - notify: false
+            scope: user
+            install:
+                - io.github.kolunmi.Bazaar
+                - app.zen_browser.zen
+                - org.remmina.Remmina
+                - dev.zed.Zed
+                - com.getpostman.Postman
+                - io.github.dvlv.boxbuddyrs
+                - com.usebottles.bottles
+                - it.mijorus.gearlever
+            remove:
+                - io.github.input_leap.input-leap

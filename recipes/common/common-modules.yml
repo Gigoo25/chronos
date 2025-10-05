@@ -9,6 +9,11 @@ modules:
       scripts:
           - installsignedkernel.sh
 
+    - type: files
+      files:
+          - source: system/custom_repos/etc
+            destination: /etc
+
     - type: rpm-ostree
       install:
           - just
@@ -32,6 +37,9 @@ modules:
           - addimageinfo.sh
 
     - type: rpm-ostree
+      repos:
+          - https://copr.fedorainfracloud.org/coprs/atim/starship/repo/fedora-%OS_VERSION%/atim-starship-fedora-%OS_VERSION%.repo
+          - https://copr.fedorainfracloud.org/coprs/pgdev/ghostty/repo/fedora-%OS_VERSION%/pgdev-ghostty-fedora-%OS_VERSION%.repo
       install:
           # environment
           - fzf
@@ -56,7 +64,10 @@ modules:
           - gnome-disk-utility
           - ddcutil
           - openssl
+          - vi
           - vim
+          - nano
+          - starship
           - just
           - alsa-firmware
           - p7zip
@@ -93,6 +104,10 @@ modules:
           - gvfs-fuse
           - gvfs-archive
           - android-tools
+
+          # terminal
+          - ghostty
+          - tmux
 
           # screenshot
           - slurp
@@ -160,5 +175,9 @@ modules:
     - type: script
       scripts:
           - addbrewjustimport.sh
+
+    - type: brew
+      nofile-limits: true
+      brew-analytics: false
 
     - type: signing
