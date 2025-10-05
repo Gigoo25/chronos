@@ -9,7 +9,7 @@ base-image: quay.io/fedora-ostree-desktops/base-atomic
 image-version: 42
 
 modules:
-    - from-file: common/sddm-modules.yml
+    - from-file: common/ly-modules.yml
     - from-file: common/common-modules.yml
     - from-file: common/nvidia-modules.yml
     - from-file: common/niri-modules.yml
