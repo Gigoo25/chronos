@@ -2,7 +2,7 @@
 # yaml-language-server: $schema=https://schema.blue-build.org/recipe-v1.json
 # image will be published to ghcr.io/<user>/<name>
 name: chronos
-description: This is my personal OS image.
+description: An opinionated fedora atomic image with niri.
 
 base-image: quay.io/fedora-ostree-desktops/base-atomic
 
